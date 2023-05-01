@@ -1,0 +1,38 @@
+터미널 리눅스 접속
+ssh root@175.45.204.108(자기 공인 IP)
+
+M7R*%?7%rnu(관리자비밀번호)
+
+passwd 새로운 비밀번호->bit123!@#
+db-g675a.vpc-cdb.ntruss.com
+
+리눅스에서 mysql 접속
+mysql -h db-g675a.vpc-cdb.ntruss.com -u study -p
+비번 치고 엔터
+
+create table bootshop(
+	num smallint auto_increment primary key,
+   sangpum varchar(30),
+   color varchar(20),
+   price int,
+   cnt smallint,
+   photo varchar(100),
+   ipgoday datetime default now()
+);
+
+이미지 링크 
+
+40x40 http://rvgrojxxplny16981866.cdn.ntruss.com/ai%20%EC%9D%B4%EB%AF%B8%EC%A7%80.jpg?type=f&w=40&h=40&faceopt=true
+160x160 http://rvgrojxxplny16981866.cdn.ntruss.com/ai%20%EC%9D%B4%EB%AF%B8%EC%A7%80.jpg?type=f&w=160&h=160&faceopt=true
+
+게시판 예제가 끝났으니 이제 다시 본인 db & storage 로 변경하세요
+
+naver.properties :apikey,secretkey
+application.yml : db url
+commonvar.jsp 에서 스토리지 이미지 경로
+ShopController, BoardController 에서 멤버변수중 버켓이름 본본인버켓명으로 변경
+
+
+예전반들 프로젝트 예시들
+
+https://drive.google.com/file/d/1hWmqz1qINSY6QnO0cSp7wu5UKFA5hGLi/view?usp=share_link
