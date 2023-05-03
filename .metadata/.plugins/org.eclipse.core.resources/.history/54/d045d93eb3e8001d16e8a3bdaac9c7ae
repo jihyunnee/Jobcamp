@@ -1,0 +1,15 @@
+package boot.study.login;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import boot.study.dto.LoginUserDto;
+
+@Mapper
+public interface LoginMapper {
+	
+	public void insertUser(LoginUserDto dto);
+	public List<LoginUserDto> getAllUser();
+	
+}

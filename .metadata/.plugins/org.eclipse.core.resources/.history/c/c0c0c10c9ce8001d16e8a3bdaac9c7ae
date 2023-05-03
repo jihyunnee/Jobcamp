@@ -1,0 +1,40 @@
+@Controller
+@RequestMapping("/user")
+public class UserController {
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/personal/register")
+    public String personalRegisterPage() {
+        return "personal/register";
+    }
+
+    @PostMapping("/personal/register")
+    public String personalRegister(@ModelAttribute PersonalUser user, Model model) {
+        boolean registered = userService.registerPersonalUser(user);
+        if (registered) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("error", "Failed to register personal user");
+            return "personal/register";
+        }
+    }
+
+    @GetMapping("/company/register")
+    public String companyRegisterPage() {
+        return "company/register";
+    }
+
+    @PostMapping("/company/register")
+    public String companyRegister(@ModelAttribute CompanyUser user, Model model) {
+        boolean registered = userService.registerCompanyUser(user);
+        if (registered) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("error", "Failed to register company user");
+            return "company/register";
+        }
+    }
+
+    //...
+}

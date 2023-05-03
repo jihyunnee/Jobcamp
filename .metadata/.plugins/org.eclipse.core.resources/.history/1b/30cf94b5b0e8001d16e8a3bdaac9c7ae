@@ -1,0 +1,11 @@
+package boot.study.login;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+	
+	
+	   boolean authenticate(String username, String password, String userType);
+}

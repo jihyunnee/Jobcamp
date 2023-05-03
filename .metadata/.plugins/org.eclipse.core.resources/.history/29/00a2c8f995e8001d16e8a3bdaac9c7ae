@@ -1,0 +1,6 @@
+package boot.study.service;
+
+public class UserService {
+
+	   boolean authenticate(String username, String password, String userType);
+}

@@ -1,0 +1,16 @@
+package boot.study.login;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import boot.study.dto.LoginUserDto;
+
+@Mapper
+public class LoginMapper {
+	
+	public void insertUser(LoginUserDto dto);
+	public List<LoginUserDto> getAllUser;
+	public int isEqualPass(Map<String, Object> map);//num,pass
+	
+}

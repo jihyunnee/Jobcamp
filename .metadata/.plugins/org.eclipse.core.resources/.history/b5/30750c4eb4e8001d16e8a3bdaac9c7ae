@@ -1,0 +1,25 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<form method="post" action="ml_login">
+    <label>Username:</label><br>
+    <input type="text" name="username"><br>
+    <label>Password:</label><br>
+    <input type="password" name="password"><br>
+    <label>User type:</label><br>
+    <input type="radio" name="userType" value="personal" checked>Personal<br>
+    <input type="radio" name="userType" value="company">Company<br>
+    <input type="submit" value="Login">
+</form>
+<br>
+<a href="personal/pl_login.jsp">Personal User Login</a><br>
+<a href="company/cl_login.jsp">Company User Login</a>
+</body>
+</html>

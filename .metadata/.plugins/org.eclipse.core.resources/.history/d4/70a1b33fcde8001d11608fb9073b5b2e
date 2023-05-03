@@ -1,0 +1,13 @@
+package boot.study.service;
+
+import java.util.List;
+
+import boot.study.dto.LoginUserDto;
+
+public interface LoginServiceInter {
+	
+	public void insertUser(LoginUserDto dto);
+	public List<LoginUserDto> getAllUser();
+	public String loginUser(String email, String password)
+
+}

@@ -1,0 +1,5 @@
+package boot.study.service;
+
+public class UserService {
+
+}

@@ -1,0 +1,19 @@
+package boot.study.login;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import boot.study.dto.LoginUserDto;
+
+@Service
+public class LoginUserService implements LoginUserServiceInter {
+
+	@Autowired
+	LoginMapper loginMapper;
+	
+	@Override
+	public void insertUser(LoginUserDto dto) {
+		loginMapper.insertUser(dto);
+	}
+	
+}

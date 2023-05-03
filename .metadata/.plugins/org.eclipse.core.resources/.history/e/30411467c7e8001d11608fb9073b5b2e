@@ -1,0 +1,29 @@
+package boot.study.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import boot.study.dto.LoginUserDto;
+import boot.study.mapper.JoinMapper;
+import boot.study.mapper.LoginMapper;
+
+@Service
+public class JoinService implements JoinServiceInter {
+
+	@Autowired
+	JoinMapper joinMapper;
+	
+	@Override
+	public void insertUser(LoginUserDto dto) {
+		loginMapper.insertUser(dto);
+	}
+
+	@Override
+	public List<LoginUserDto> getAllUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

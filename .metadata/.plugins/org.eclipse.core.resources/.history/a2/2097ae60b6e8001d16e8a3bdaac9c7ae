@@ -1,0 +1,47 @@
+package boot.study.login;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import boot.study.service.LoginUserService;
+import naver.cloud.NcpObjectStorageService;
+
+@Controller
+@RequestMapping("/login")
+public class LoginController {
+
+		
+	  @Autowired
+	    private LoginUserService loginuserService;
+	  
+	  @Autowired
+		private NcpObjectStorageService storageService;
+	  
+	//버켓이름지정
+		private String bucketName="jobcamp-bucket";
+
+	    @GetMapping("/login")
+	    public String mainloginPage() {
+	        return "ml_login";
+	    }
+
+
+	    @GetMapping("/NewFile")
+	    public String personalLoginPage() {
+	    	 return "NewFile";
+	    }	
+
+	    @GetMapping("/company/login")
+	    public String companyLoginPage() {
+	        return "company/cl_login";
+	    }	
+	
+	
+	
+}

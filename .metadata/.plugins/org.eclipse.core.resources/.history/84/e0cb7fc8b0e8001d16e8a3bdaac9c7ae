@@ -1,0 +1,72 @@
+package boot.study.login;
+
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    // 메인 로그인 페이지
+    @GetMapping("/")
+    public String showMainLogin(Model model) {
+        return "ml_login";
+    }
+
+    // 개인회원 로그인 페이지
+    @GetMapping("/personal_login")
+    public String showPersonalLogin(Model model) {
+        return "pl_login";
+    }
+
+    // 기업회원 로그인 페이지
+    @GetMapping("/company_login")
+    public String showCompanyLogin(Model model) {
+        return "cl_login";
+    }
+
+    // 개인회원 로그인 처리
+    @PostMapping("/personal_login_process")
+    public String personalLoginProcess(HttpServletRequest request, @ModelAttribute("user") User user) {
+        User authUser = userService.authenticate(user.getEmail(), user.getPassword(), "personal");
+        if (authUser == null) {
+            return "pl_login";
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedInUser", authUser);
+            return "pl_main";
+        }
+    }
+
+    // 기업회원 로그인 처리
+    @PostMapping("/company_login_process")
+    public String companyLoginProcess(HttpServletRequest request, @ModelAttribute("user") User user) {
+        User authUser = userService.authenticate(user.getEmail(), user.getPassword(), "company");
+        if (authUser == null) {
+            return "cl_login";
+        } else {
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedInUser", authUser);
+            return "cl_main";
+        }
+    }
+
+    // 로그아웃 처리
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "redirect:/";
+    }
+
+}

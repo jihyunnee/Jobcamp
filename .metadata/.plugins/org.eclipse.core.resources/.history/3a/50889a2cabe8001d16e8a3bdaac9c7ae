@@ -1,0 +1,25 @@
+#port설정
+server:
+  port: 9000
+  
+#jsp 포워드 설정
+spring:
+
+      
+#mysql setting
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+   # url: jdbc:mysql://localhost:3306/bit701?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://db-g66o9-kr.vpc-pub-cdb.ntruss.com:3306/bit701?serverTimezone=Asia/Seoul
+   # url: jdbc:mysql://db-g66k8-kr.vpc-pub-cdb.ntruss.com:3306/bit701?serverTimezone=Asia/Seoul
+    username: jobcamp
+    password: bit123!@#
+  servlet:
+    multipart:
+      max-file-size:
+        20MB
+#mybatis
+mybatis:
+  type-aliases-package: boot.study.dto
+  mapper-locations:
+  - /mapper/**/*.xml

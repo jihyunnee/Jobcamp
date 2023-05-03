@@ -1,0 +1,92 @@
+package boot.study.login;
+
+import java.sql.SQLException;
+
+public class UserDao {
+
+	 // 회원가입 정보를 user 테이블에 저장하는 메소드
+    public int signUp(User user) {
+        String SQL = "INSERT INTO user VALUES (?, ?, ?, ?, ?)";
+        try {
+            getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, user.getId());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getName());
+            pstmt.setString(4, user.getEmail());
+            pstmt.setBoolean(5, user.getIsCompany());
+            return pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1; // 데이터베이스 오류
+    }
+
+    // 회원 정보를 조회하는 메소드
+    public User getUser(String userID) {
+        String SQL = "SELECT * FROM user WHERE id=?";
+        try {
+            getConnection();
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, userID);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setId(rs.getString("id"));
+                user.setPassword(rs.getString("password"));
+                user.setName(rs.getString("name"));
+                user.setEmail(rs.getString("email"));
+                user.setIsCompany(rs.getBoolean("is_company"));
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e
+
+	    public void insertUser(User user) throws SQLException {
+	        try (Connection connection = getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER_SQL)) {
+	            preparedStatement.setString(1, user.getUsername());
+	            preparedStatement.setString(2, user.getPassword());
+	            preparedStatement.setString(3, user.getEmail());
+	            preparedStatement.setString(4, user.getPhone());
+	            preparedStatement.executeUpdate();
+	        } catch (SQLException e) {
+	            // handle exception
+	        }
+	    }
+
+	    public User selectUser(String username, String password) {
+	        User user = null;
+	        try (Connection connection = getConnection();
+	             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_USERNAME_PASSWORD)) {
+	            preparedStatement.setString(1, username);
+	            preparedStatement.setString(2, password);
+	            ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+	                int id = rs.getInt("id");
+	                String email = rs.getString("email");
+	                String phone = rs.getString("phone");
+	                user = new User(id, username, password, email, phone);
+	            }
+	        } catch (SQLException e) {
+	            // handle exception
+	        }
+	        return user;
+	    }
+
+}

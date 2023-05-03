@@ -1,0 +1,12 @@
+package boot.study.login;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import boot.study.dto.LoginUserDto;
+
+@Mapper
+public class LoginMapper {
+	
+	public void insertUser(LoginUserDto dto);
+
+}

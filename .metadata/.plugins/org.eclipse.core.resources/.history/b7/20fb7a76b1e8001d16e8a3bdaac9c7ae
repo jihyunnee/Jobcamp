@@ -1,0 +1,55 @@
+package boot.study.login;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import naver.cloud.NcpObjectStorageService;
+
+@Controller
+@RequestMapping("/login")
+public class LoginController {
+
+		
+	  @Autowired
+	    private LoginUserService loginuserService;
+	  
+	  @Autowired
+		private NcpObjectStorageService storageService;
+	  
+	//버켓이름지정
+		private String bucketName="bit701-bucket-56";
+
+	    @GetMapping("/login")
+	    public String loginPage() {
+	        return "ml_login";
+	    }
+
+	    @PostMapping("/login")
+	    public String login(@RequestParam String username, @RequestParam String password, @RequestParam String userType, Model model) {
+	        boolean authenticated = userService.authenticate(username, password, userType);
+	        if (authenticated) {
+	            return "redirect:/board";
+	        } else {
+	            model.addAttribute("error", "Invalid username, password or user type");
+	            return "login";
+	        }
+	    }
+
+	    @GetMapping("/personal/login")
+	    public String personalLoginPage() {
+	    	 return "personal/pl_login";
+	    }	
+
+	    @GetMapping("/company/login")
+	    public String companyLoginPage() {
+	        return "company/cl_login";
+	    }	
+	
+	
+	
+}

@@ -1,0 +1,21 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Personal User Login</title>
+</head>
+<body>
+<h1>Personal User Login</h1>
+<form method="post" action="personal/login">
+    <label>Username:</label><br>
+    <input type="text" name="username"><br>
+    <label>Password:</label><br>
+    <input type="password" name="password"><br>
+    <input type="hidden" name="userType" value="personal">
+    <input type="submit" value="Login">
+</form>
+<br>
+<a href="../ml_login.jsp">Go Back</a>
+</body>
+</html>

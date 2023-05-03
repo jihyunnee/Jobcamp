@@ -1,0 +1,26 @@
+<%@page import="boot.study.dto.LoginUserDto"%>
+<%@page import="boot.study.service.LoginUserService"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="java.util.*, java.sql.*" %>
+
+
+
+<%
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    String userType = request.getParameter("userType");
+
+    LoginUserService loginUserService = new LoginUserService();
+    LoginUserDto dto = userService.login(email, password, userType);
+
+    if (user != null) {
+        session.setAttribute("loggedInUser", user);
+        if (userType.equals("personal")) {
+            response.sendRedirect("개인회원마이페이지.jsp");
+        } else {
+            response.sendRedirect("기업회원마이페이지.jsp");
+        }
+    } else {
+        response.sendRedirect("NewLogin.jsp?error=invalidLogin");
+    }
+%>

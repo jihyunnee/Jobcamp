@@ -1,0 +1,8 @@
+package boot.study.dto;
+
+
+@Data
+@Alias("LoginUserDto")
+public class LoginUserDto {
+
+}
